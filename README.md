@@ -21,8 +21,8 @@ devops:
       branch: "es"                             # 分支
       giturl: "https://github.sads"            # git pull url 地址 (你要先配置一下秘钥啊!)
       runname: "dollarki"                      # 运行程序的name
-      dirpath: "/asdasd/asdasdasd"             # 绝对路径
-      secondarydirectory: ""                   # 如果有二级目录 就填写在这里
+      dirpath: "/asdasd/asdasdasd"             # 项目的路径   绝对路径
+      secondarydirectory: ""                   # 如果执行程序在二级目录中 请填写(相对路径)
     - port: "8082"     
       full_name: "dollarkillerx/easyutils"     
       branch: "us"     
