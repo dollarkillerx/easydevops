@@ -89,18 +89,18 @@ app:
 # 要自动化部署应用的配置
 devops:
   node:
-    - port: "1212"      # 程序运行端口
-      full_name: ""     # 名称 例如 dollarkillerx/easyutils
-      branch: "es"      # 分支
-      giturl: ""    # git pull url 地址 (你要先配置一下秘钥啊!)
-      runname: ""   # 运行程序的name
-      dirpath: ""   # 绝对路径
-      secondarydirectory: ""  # 如果有二级目录 就填写在这里
-    - port: "12sss12"      # 程序运行端口
-      full_name: ""     # 名称 例如 dollarkillerx/easyutils
-      branch: "es"      # 分支
-      giturl: ""    # git pull url 地址 (你要先配置一下秘钥啊!)
-      runname: ""   # 运行程序的name
-      dirpath: ""   # 绝对路径
-      secondarydirectory: ""  # 如果有二级目录 就填写在这里
+    - port: "8081"                             # 程序运行端口
+      full_name: "dollarkillerx/easyutils"     # 名称 例如 dollarkillerx/easyutils
+      branch: "master"                         # 分支
+      giturl: "https://github"    			   # git pull url 地址 (你要先配置一下秘钥啊!)
+      runname: "api"                           # 运行程序的name
+      dirpath: "/home/s"                       # 绝对路径
+      secondarydirectory: ""                   # 如果有二级目录 就填写在这里
+    - port: "8082"                              
+      full_name: ""      
+      branch: "es"      
+      giturl: ""    
+      runname: ""    
+      dirpath: ""    
+      secondarydirectory: ""   
 `
