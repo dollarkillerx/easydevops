@@ -12,5 +12,5 @@ import (
 )
 
 func RegisterRouter(app *httprouter.Router) {
-	app.POST("/update",controller.Rundevops)
+	app.POST("/update", controller.Rundevops)
 }

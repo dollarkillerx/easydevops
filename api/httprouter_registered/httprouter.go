@@ -11,7 +11,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-func RegisterHttprouter() *httprouter.Router{
+func RegisterHttprouter() *httprouter.Router {
 	router := httprouter.New()
 
 	router2.RegisterRouter(router)

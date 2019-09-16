@@ -24,6 +24,5 @@ func main() {
 	app := httprouter_registered.RegisterHttprouter()
 
 	clog.Println("http://" + config.Basis.App.Host)
-	log.Fatal(http.ListenAndServe(config.Basis.App.Host,app))
+	log.Fatal(http.ListenAndServe(config.Basis.App.Host, app))
 }
-
