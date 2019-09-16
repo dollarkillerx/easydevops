@@ -6,14 +6,14 @@ pid=$(awk 'NR==2{print}' tmp);
 kill -9 $pid
 
 # 如果文件不存在 git clone 
-if [ ! -d "/asdasd/asdasdasd/es" ];then
+if [ ! -d "/asdasd/asdasdasd/easyutils" ];then
 	cd /asdasd/asdasdasd
 	git clone -b es  https://github.sads
-	cd es
+	cd easyutils
 	./dollarki &	
 else
 # 如果文件存在
-	cd /asdasd/asdasdasd/es
+	cd /asdasd/asdasdasd/easyutils
 	git pull
 	./dollarki &
 

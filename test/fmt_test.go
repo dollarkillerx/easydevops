@@ -9,6 +9,8 @@ package test
 import (
 	"fmt"
 	"github.com/dollarkillerx/easyutils/clog"
+	"log"
+	"strings"
 	"testing"
 )
 
@@ -29,3 +31,22 @@ git pull %s
 
 ./%s &
 `
+
+func TestFull(t *testing.T) {
+	s := getgitpath("dollarkillerx/easyutils")
+	clog.Println(s)
+
+	gitpath := getgitpath("dollarkillerx/easyutils/")
+	if string(gitpath[len(gitpath)-1]) == "/" {
+		gitpath = gitpath[:len(gitpath)-1]
+	}
+
+	log.Println(gitpath)
+
+}
+
+func getgitpath(full string) string {
+	index := strings.Index(full, "/")
+
+	return full[(index + 1):]
+}

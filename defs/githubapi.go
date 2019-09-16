@@ -7,8 +7,8 @@
 package defs
 
 type GithubAPI struct {
-	Branch string `json:"ref" form:"ref"`
-	Repository struct{
+	Branch     string `json:"ref" form:"ref"`
+	Repository struct {
 		FullName string `json:"full_name" form:"full_name"`
 	}
 }
