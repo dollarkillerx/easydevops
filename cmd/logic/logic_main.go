@@ -29,19 +29,29 @@ func (l *Logic) Bale() {
 
 // 上传
 func (l *Logic) Up() {
+	clog.Println("文件开始上传到 devops")
+	clog.Println(l.GetName())
 	s := config.Basis.App.DevopsServer
 
 	post := httplib.Post(s)
-	file := post.PostFile("file", l.GetName()+".zip")
-	i, e := file.String()
+	post.Param("server_key",config.Basis.App.ServerKey)
+	post.Param("key",config.Basis.App.Key)
+	post.PostFile("file", l.GetName()+".zip")
+	i, e := post.String()
+
 	if e != nil {
 		clog.PrintWa("上传到 devops服务器失败  请检查填写是否正确")
 		os.Exit(0)
 	}
-	if i == "200" {
+
+	switch i {
+	case "200":
 		clog.Println("打包文件 上传完毕")
-	}else {
-		clog.PrintWa("打包文件 上传失败")
+	case "401":
+		clog.PrintWa("打包文件 上传失败 401")
+		os.Exit(0)
+	case "500":
+		clog.PrintWa("打包文件 上传失败 500")
 		os.Exit(0)
 	}
 

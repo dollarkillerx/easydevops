@@ -22,6 +22,8 @@ type Node struct {
 type base struct {
 	App struct {
 		DevopsServer string `json:"devops_server" yaml:"devops_server"`
+		ServerKey string `json:"server_key" yaml:"server_key"`
+		Key string `json:"key" yaml:"key"`
 	}
 	Devops Node `json:"devops" yaml:"devops"`
 }
@@ -65,6 +67,9 @@ var devposconfig = `
 
 app:
   devops_server: ""        # devops 服务器地址  https:// ...
+  server_key: ""           # 上传 devops 服务器秘钥
+  key: ""                  # 文件同步 秘钥  (服务器同步数据时需要)
+
 
 devops:
   full_name: ""        # 名称 例如 dollarkillerx/easyutils
