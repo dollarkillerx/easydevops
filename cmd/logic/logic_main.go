@@ -56,7 +56,7 @@ func (l *Logic) Up() {
 	}
 
 	// 文件上传完毕 删除本地文件
-	e = os.Remove(l.GetName() + ".zip")
+	e = os.Remove(l.GetName() + ".tar.gz")
 	if e != nil {
 		clog.PrintWa("清理冗余数据失败")
 	}
