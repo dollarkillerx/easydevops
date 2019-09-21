@@ -42,3 +42,9 @@ devops:
 
 - 如果添加网站呢？ 直接添加到配置文件即可  然后重启服务就行
 
+### GoWith (解决  github包过大问题)
+![](./README/gowith.png)
+
+
+
+
