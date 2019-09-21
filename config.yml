@@ -8,5 +8,5 @@ app:
 
 
 devops:
-  full_name: ""        # 名称 例如 dollarkillerx/easyutils
+  full_name: "dollarkillerx/easyutils"        # 名称 例如 dollarkillerx/easyutils
   branch: "master"     # 分支

@@ -7,14 +7,14 @@
 package httprouter_registered
 
 import (
-	router3 "easydevops/client/api/router"
+	"easydevops/server/web/routers"
 	"github.com/julienschmidt/httprouter"
 )
 
 func RegisterHttprouter() *httprouter.Router {
 	router := httprouter.New()
 
-	router3.RegisterRouter(router)
+	routers.RegisterRouter(router)
 
 	return router
 }

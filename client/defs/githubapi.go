@@ -11,6 +11,9 @@ type GithubAPI struct {
 	Repository struct {
 		FullName string `json:"full_name" form:"full_name"`
 	}
+	Commits []struct{
+		Message string `json:"message" form:"message"`
+	}
 }
 
 // "ref": "refs/heads/master",

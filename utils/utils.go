@@ -27,9 +27,10 @@ func (u *Utils) Exec(sh string, arg ...string) (error, string, string) {
 }
 
 func (u *Utils) Zip(name string) {
-	zip := compression.Zip(".", name + ".zip")
-	if zip != nil {
-		panic(zip)
+	zip := compression.Tar{}
+	err := zip.Tar(".", name)
+	if err != nil {
+		panic(err)
 	}
 }
 

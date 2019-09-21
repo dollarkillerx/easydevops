@@ -8,29 +8,27 @@ package config
 
 import (
 	"github.com/dollarkillerx/easyutils"
-	"github.com/dollarkillerx/easyutils/clog"
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
-	"log"
 )
 
 type Node struct {
 	Port               string `yaml:"port"`
 	FullName           string `yaml:"full_name"`
+	Key                string `json:"key" yaml:"key"`
 	Branch             string `yaml:"branch"`
 	Giturl             string `yaml:"giturl"`
 	Runname            string `yaml:"runname"`
 	Dirpath            string `yaml:"dirpath"`
 	Secondarydirectory string `yaml:"secondarydirectory"`
+	Email              string `yaml:"email"`
 }
 
 type base struct {
 	App struct {
-		Host       string `yaml:"host"`
-		Debug      bool   `yaml:"debug"`
-		MaxRequest int    `yaml:"max_request"`
-		LogLevel   string `yaml:"log_level"`
-		TaskNum    int    `yaml:"task_num"`
+		Host         string `yaml:"host"`
+		DevopsServer string `json:"devops_server" yaml:"devops_server"`
+		ServerKey    string `json:"server_key" yaml:"server_key"`
 	}
 	Devops struct {
 		Node []Node `yaml:"node"`
@@ -62,10 +60,6 @@ func init() {
 		panic(e.Error())
 	}
 
-	if Basis.App.Debug {
-		log.Println(Basis)
-		clog.Println(Basis.Devops)
-	}
 }
 
 func createConfig() {
@@ -82,9 +76,8 @@ var devposconfig = `
 # 这devops系统配置
 app:
   host: "0.0.0.0:8083"
-  debug: true
-  max_request: 1000
-  task_num: 10
+  devops_server: "http://0.0.0.0:8083/upfile"        # devops 服务器地址  https:// ...
+  server_key: "xxxxxx"                               # 上传 devops 服务器秘钥
 
 # 要自动化部署应用的配置
 devops:
@@ -92,15 +85,19 @@ devops:
     - port: "8081"                             # 程序运行端口
       full_name: "dollarkillerx/easyutils"     # 名称 例如 dollarkillerx/easyutils
       branch: "master"                         # 分支
+      key: "key"                  # 文件同步 秘钥  (服务器同步数据时需要)
       giturl: "https://github"    			   # git pull url 地址 (你要先配置一下秘钥啊!)
       runname: "api"                           # 运行程序的name
       dirpath: "/home/s"                       # 绝对路径
       secondarydirectory: ""                   # 如果有二级目录 就填写在这里
-    - port: "8082"                              
-      full_name: ""      
-      branch: "es"      
-      giturl: ""    
-      runname: ""    
-      dirpath: ""    
-      secondarydirectory: ""   
+      email: ""                                # 部署成功收邮件通知 
+    - port: "8082"
+      full_name: ""
+      branch: "es"
+      key: "key"
+      giturl: ""
+      runname: ""
+      dirpath: ""
+      secondarydirectory: ""
+      email: ""
 `

@@ -5,10 +5,10 @@ go 1.12
 require (
 	github.com/bradfitz/gomemcache v0.0.0-20190913173617-a41fca850d0b // indirect
 	github.com/casbin/casbin v1.9.1 // indirect
-	github.com/couchbase/go-couchbase v0.0.0-20190913050104-3db08c407d17 // indirect
-	github.com/couchbase/gomemcached v0.0.0-20190910024640-4e485a3d895f // indirect
+	github.com/couchbase/go-couchbase v0.0.0-20190916184909-f83e63d76bc4 // indirect
+	github.com/couchbase/gomemcached v0.0.0-20190920220213-2b4197fedf38 // indirect
 	github.com/couchbase/goutils v0.0.0-20190315194238-f9d42b11473b // indirect
-	github.com/dollarkillerx/easyutils v0.0.0-20190916023602-08d48d75f37e
+	github.com/dollarkillerx/easyutils v0.0.0-20190921081604-08d9395753f7
 	github.com/edsrzf/mmap-go v1.0.0 // indirect
 	github.com/go-redis/redis v6.15.5+incompatible // indirect
 	github.com/gogo/protobuf v1.3.0 // indirect
@@ -27,10 +27,10 @@ require (
 	github.com/wendal/errors v0.0.0-20181209125328-7f31f4b264ec // indirect
 	golang.org/x/crypto v0.0.0-20190911031432-227b76d455e7 // indirect
 	golang.org/x/image v0.0.0-20190910094157-69e4b8554b2a // indirect
-	golang.org/x/net v0.0.0-20190912160710-24e19bdeb0f2 // indirect
+	golang.org/x/net v0.0.0-20190921015927-1a5e07d1ff72 // indirect
 	golang.org/x/sync v0.0.0-20190911185100-cd5d95a43a6e // indirect
-	golang.org/x/sys v0.0.0-20190913121621-c3b328c6e5a7 // indirect
-	golang.org/x/tools v0.0.0-20190916020655-1ccc110ba9df // indirect
+	golang.org/x/sys v0.0.0-20190920190810-ef0ce1748380 // indirect
+	golang.org/x/tools v0.0.0-20190920225731-5eefd052ad72 // indirect
 	gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15 // indirect
 	gopkg.in/yaml.v2 v2.2.2
 )
