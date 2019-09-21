@@ -36,7 +36,7 @@ func (l *Logic) Up() {
 	post := httplib.Post(s)
 	post.Param("server_key",config.Basis.App.ServerKey)
 	post.Param("key",config.Basis.App.Key)
-	post.PostFile("file", l.GetName()+".zip")
+	post.PostFile("file", l.GetName()+".tar.gz")
 	i, e := post.String()
 
 	if e != nil {
