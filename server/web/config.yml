@@ -3,4 +3,4 @@
 
 app:
   host: "0.0.0.0:8083"  # 服务器运行
-  server_key: "xxxxxx"        # 服务器key   用于用户验证
+  server_key: "123456"        # 服务器key   用于用户验证

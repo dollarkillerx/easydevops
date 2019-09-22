@@ -8,6 +8,7 @@ package config
 
 import (
 	"github.com/dollarkillerx/easyutils"
+	"github.com/dollarkillerx/easyutils/clog"
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
 )
@@ -42,6 +43,8 @@ func init() {
 	e = yaml.Unmarshal(bytes, Basis)
 	if e != nil {
 		panic(e.Error())
+	}else {
+		clog.Println(Basis)
 	}
 }
 
