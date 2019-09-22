@@ -115,7 +115,6 @@ func dow(name, branch string) error {
 						gemail.SendNifoLog([]string{k.Email},"EasyDevops",k.FullName + "  " + k.Branch + "   更新失败")
 					}
 				}
-
 			}
 		}
 	}

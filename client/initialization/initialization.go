@@ -36,16 +36,18 @@ func createDevops() {
 		shPath := "./sh/" + shName
 
 		// 获取git目录地址
-		gitpath := getgitpath(k.FullName)
-		path := k.Dirpath
-		if string(k.Dirpath[len(k.Dirpath)-1]) == "/" {
-			path = k.Dirpath[:len(k.Dirpath)-1]
-		}
-		runpath := path + "/" + gitpath
+		//gitpath := getgitpath(k.FullName)
+		//path := k.Dirpath
+		//if string(k.Dirpath[len(k.Dirpath)-1]) == "/" {
+		//	path = k.Dirpath[:len(k.Dirpath)-1]
+		//}
+		//runpath := path + "/" + gitpath
+
+		ks := k.Dirpath + "/easydevops"
 
 		// 如果没有二级目录
 		if k.Secondarydirectory == "" {
-			sh := fmt.Sprintf(sh1, k.Port, runpath, k.Dirpath, k.Branch, k.Giturl, gitpath, k.Runname, runpath, k.Runname)
+			sh := fmt.Sprintf(sh1, k.Port, ks, k.Runname)
 			err := ioutil.WriteFile(shPath, []byte(sh), 00666)
 			if err != nil {
 				clog.PrintWa("sh文件创建失败")
@@ -53,7 +55,7 @@ func createDevops() {
 			}
 		} else {
 			// 如果存在二级目录
-			sh := fmt.Sprintf(sh2, k.Port, runpath, k.Dirpath, k.Branch, k.Giturl, gitpath, k.Secondarydirectory, k.Runname, runpath, k.Secondarydirectory, k.Runname)
+			sh := fmt.Sprintf(sh2, k.Port, ks, k.Secondarydirectory,k.Runname)
 			err := ioutil.WriteFile(shPath, []byte(sh), 00666)
 			if err != nil {
 				clog.PrintWa("sh文件创建失败")
@@ -77,19 +79,8 @@ lsof -i :%s | awk '{print $2}'> tmp
 pid=$(awk 'NR==2{print}' tmp);
 kill -9 $pid
 
-# 如果文件不存在 git clone 
-if [ ! -d "%s" ];then
-	cd %s
-	git clone -b %s  %s
-	cd %s
-	./%s &	
-else
-# 如果文件存在
-	cd %s
-	git pull
-	./%s &
-
-fi
+cd %s
+./%s
 `
 
 var sh2 = `
@@ -99,19 +90,7 @@ lsof -i :%s | awk '{print $2}'> tmp
 pid=$(awk 'NR==2{print}' tmp);
 kill -9 $pid
 
-# 如果文件不存在 git clone 
-if [ ! -d "%s" ];then
-	cd %s
-	git clone -b %s  %s
-	cd %s
-	cd %s
-	./%s &	
-else
-# 如果文件存在
-	cd %s
-	git pull
-	cd %s
-	./%s &
-
-fi
+cd %s
+cd %s
+./%s
 `

@@ -21,7 +21,7 @@ require (
 	github.com/onsi/ginkgo v1.10.1 // indirect
 	github.com/onsi/gomega v1.7.0 // indirect
 	github.com/pelletier/go-toml v1.4.0 // indirect
-	github.com/pkg/errors v0.8.1 // indirect
+	github.com/pkg/errors v0.8.1
 	github.com/siddontang/ledisdb v0.0.0-20190202134119-8ceb77e66a92 // indirect
 	github.com/syndtr/goleveldb v1.0.0 // indirect
 	github.com/wendal/errors v0.0.0-20181209125328-7f31f4b264ec // indirect
