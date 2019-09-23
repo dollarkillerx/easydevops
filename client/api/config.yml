@@ -4,7 +4,7 @@
 # 这devops系统配置
 app:
   host: "0.0.0.0:8083"
-  devops_server: "http://0.0.0.0:8083/upfile"        # devops 服务器地址  https:// ...
+  devops_server: "http://0.0.0.0:8083/getfile"        # devops 服务器地址  https:// ...
   server_key: "xxxxxx"                               # 上传 devops 服务器秘钥
 
 # 要自动化部署应用的配置

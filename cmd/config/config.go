@@ -66,9 +66,9 @@ var devposconfig = `
 # devops生成文件   开发机 cli 端
 
 app:
-  devops_server: ""        # devops 服务器地址  https:// ...
-  server_key: ""           # 上传 devops 服务器秘钥
-  key: ""                  # 文件同步 秘钥  (服务器同步数据时需要)
+  devops_server: "http://0.0.0.0:8083/upfile"        # devops 服务器地址  https:// ...
+  server_key: ""                                     # 上传 devops 服务器秘钥
+  key: ""                                            # 文件同步 秘钥  (服务器同步数据时需要)
 
 
 devops:
