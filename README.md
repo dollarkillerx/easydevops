@@ -46,5 +46,72 @@ devops:
 ![](./README/gowith.png)
 
 
+注： 暂不支持 win  (仅支持mac  or linux)
+
+``` 
+.
+├── LICENSE
+├── README
+│   ├── gowith.png
+│   └── one.png
+├── README.md
+├── client                # 部署客户端
+│   ├── api
+│   │   ├── api
+│   │   ├── config.yml
+│   │   ├── controller
+│   │   │   └── main.go
+│   │   ├── devops.sh
+│   │   ├── httprouter_registered
+│   │   │   └── httprouter.go
+│   │   ├── main.go
+│   │   ├── router
+│   │   │   └── app.go
+│   │   └── sh
+│   ├── config
+│   │   └── config.go
+│   ├── defs
+│   │   └── githubapi.go
+│   ├── initialization
+│   │   └── initialization.go
+│   └── test
+│       ├── fmt_test.go
+│       ├── master.json
+│       ├── test.json
+│       ├── testkill.sh
+│       └── tmp
+├── cmd                # 提交cli 工具
+│   ├── cmd
+│   ├── config
+│   │   └── config.go
+│   ├── config.yml
+│   ├── logic
+│   │   └── logic_main.go
+│   ├── main.go
+│   └── test
+├── common
+│   └── resp.go
+├── config.yml
+├── go.mod
+├── go.sum
+├── server           # 任务中心
+│   ├── config
+│   │   └── config.go
+│   └── web
+│       ├── config.yml
+│       ├── controller
+│       │   └── main_controller.go
+│       ├── file
+│       ├── httprouter_registered
+│       │   └── httprouter.go
+│       ├── main.go
+│       ├── routers
+│       │   └── app.go
+│       └── web
+├── test
+│   └── one_test.go
+└── utils
+    └── utils.go
+```
 
 
