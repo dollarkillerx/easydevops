@@ -17,7 +17,6 @@ type Node struct {
 	FullName           string `yaml:"full_name"`
 	Key                string `json:"key" yaml:"key"`
 	Branch             string `yaml:"branch"`
-	Giturl             string `yaml:"giturl"`
 	Runname            string `yaml:"runname"`
 	Dirpath            string `yaml:"dirpath"`
 	Secondarydirectory string `yaml:"secondarydirectory"`
@@ -85,8 +84,7 @@ devops:
     - port: "8081"                             # 程序运行端口
       full_name: "dollarkillerx/easyutils"     # 名称 例如 dollarkillerx/easyutils
       branch: "master"                         # 分支
-      key: "key"                  # 文件同步 秘钥  (服务器同步数据时需要)
-      giturl: "https://github"    			   # git pull url 地址 (你要先配置一下秘钥啊!)
+      key: "key"                               # 文件同步 秘钥  (服务器同步数据时需要)
       runname: "api"                           # 运行程序的name
       dirpath: "/home/s"                       # 绝对路径
       secondarydirectory: ""                   # 如果有二级目录 就填写在这里
@@ -95,7 +93,6 @@ devops:
       full_name: ""
       branch: "es"
       key: "key"
-      giturl: ""
       runname: ""
       dirpath: ""
       secondarydirectory: ""

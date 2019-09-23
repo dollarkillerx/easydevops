@@ -96,8 +96,10 @@ func GetFile(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
 	}
 
 	w.WriteHeader(200)
-	w.Header().Set("Content-Type","application/octet-stream")
-	w.Header().Set("Content-Disposition","attachment; filename=hc.tar.gz")
+	//w.Header().Set("Content-Type","application/octet-stream")
+	//w.Header().Set("Content-Disposition","attachment; filename=hc.tar.gz")
+	//w.Header().Set("Content-Transfer-Encoding", "binary")
+
 	w.Write(bytes)
 	// 如果文件 下载完毕就删除文件
 	os.Remove(filepath)

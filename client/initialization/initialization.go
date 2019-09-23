@@ -35,14 +35,6 @@ func createDevops() {
 		shName := name + k.Port + k.Branch + ".sh"
 		shPath := "./sh/" + shName
 
-		// 获取git目录地址
-		//gitpath := getgitpath(k.FullName)
-		//path := k.Dirpath
-		//if string(k.Dirpath[len(k.Dirpath)-1]) == "/" {
-		//	path = k.Dirpath[:len(k.Dirpath)-1]
-		//}
-		//runpath := path + "/" + gitpath
-
 		ks := k.Dirpath + "/easydevops"
 
 		// 如果没有二级目录

@@ -34,7 +34,7 @@ var (
 
 func init() {
 	// 判断配置文件是否存在 如果不存在 则创建
-	b, e := easyutils.PathExists("./config.yml")
+	b, e := easyutils.PathExists("./devconfig.yml")
 	if e != nil || b == false {
 		createConfig()
 		clog.Println("配置文件初始化完成")
@@ -44,7 +44,7 @@ func init() {
 
 	Basis = &base{}
 
-	bytes, e := ioutil.ReadFile("./config.yml")
+	bytes, e := ioutil.ReadFile("./devconfig.yml")
 	if e != nil {
 		panic(e.Error())
 	}
@@ -56,7 +56,7 @@ func init() {
 }
 
 func createConfig() {
-	err := ioutil.WriteFile("config.yml", []byte(devposconfig), 00666)
+	err := ioutil.WriteFile("devconfig.yml", []byte(devposconfig), 00666)
 	if err != nil {
 		panic("配置文件 创建失败")
 	}

@@ -53,6 +53,9 @@ func (l *Logic) Up() {
 	case "500":
 		clog.PrintWa("打包文件 上传失败 500")
 		os.Exit(0)
+	default:
+		clog.PrintWa("未知错误！" + i)
+		os.Exit(0)
 	}
 
 	// 文件上传完毕 删除本地文件

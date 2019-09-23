@@ -21,6 +21,7 @@ import (
 	"net/http"
 	"os"
 	"os/exec"
+	"strconv"
 	"strings"
 )
 
@@ -34,32 +35,39 @@ func reLanuch(sh string) {
 }
 
 func Rundevops(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
-	clog.Println("收到github更新任务 进行更新")
-
 	data := defs.GithubAPI{}
 	err := formband.Band(r, &data)
 	if err != nil {
 		clog.Println(err)
 		return
-	} else {
-		//log.Println(data)
-		clog.Println("接受到一个push请求")
 	}
 
 	// 更具commit 判断 是否是真的更新
 	if data.Commits[0].Message != "EasyDevOps" {
 		// 直接返回
 		return
+	}else {
+		clog.Println("收到github更新任务 进行更新")
+		clog.Println(data.Repository.FullName + "  : " + data.Branch)
 	}
 
 	shpath := checkexis(data.Repository.FullName, data.Branch)
 	if shpath != "" {
+		err,email := dow(data.Repository.FullName, data.Branch)
+		if err != nil {
+			return
+		}
 		reLanuch(shpath)
+
+		// 如果没有任何 问题发送邮件成功更新
+		if email != "" {
+			gemail.SendNifoLog([]string{email},"EasyDevops",data.Repository.FullName + "  " + data.Branch + "   200 OK 成功更新")
+		}
 	}
 }
 
 // 下载对应脚本
-func dow(name, branch string) error {
+func dow(name, branch string) (error,string) {
 	for _,k := range config.Basis.Devops.Node {
 		if k.FullName == name {
 			if strings.Index(branch, k.Branch) != -1 {
@@ -71,13 +79,15 @@ func dow(name, branch string) error {
 				defer response.Body.Close()
 				if e != nil {
 					if k.Email != "" {
-						gemail.SendNifoLog([]string{k.Email},"EasyDevops",k.FullName + "  " + k.Branch + "   更新失败")
+						gemail.SendNifoLog([]string{k.Email},"EasyDevops",k.FullName + "  " + k.Branch + "   更新失败 (下载 错误)")
 					}
+					return errors.New("dow err"),""
 				}
 				if response.StatusCode != 200 {
 					if k.Email != "" {
-						gemail.SendNifoLog([]string{k.Email},"EasyDevops",k.FullName + "  " + k.Branch + "   更新失败")
+						gemail.SendNifoLog([]string{k.Email},"EasyDevops",k.FullName + "  " + k.Branch + "   更新失败 (下载 没有权限 key是否错误？)" + strconv.Itoa(response.StatusCode))
 					}
+					return errors.New("dow err"),""
 				}
 
 				// 文件 下载到对应目录
@@ -96,15 +106,17 @@ func dow(name, branch string) error {
 				bytes, e := ioutil.ReadAll(response.Body)
 				if e != nil {
 					if k.Email != "" {
-						gemail.SendNifoLog([]string{k.Email},"EasyDevops",k.FullName + "  " + k.Branch + "   更新失败")
+						gemail.SendNifoLog([]string{k.Email},"EasyDevops",k.FullName + "  " + k.Branch + "   更新失败 (下载 解析失败IO)")
 					}
+					return errors.New("dow err"),""
 				}
 				// 下载文件到指定位置
-				e = ioutil.WriteFile("easydevops.tar.gz", bytes, 00666)
+				e = ioutil.WriteFile(filepath + "/easydevops.tar.gz", bytes, 00666)
 				if e != nil {
 					if k.Email != "" {
-						gemail.SendNifoLog([]string{k.Email},"EasyDevops",k.FullName + "  " + k.Branch + "   更新失败")
+						gemail.SendNifoLog([]string{k.Email},"EasyDevops",k.FullName + "  " + k.Branch + "   更新失败 (下载 文件copy失败)")
 					}
+					return errors.New("dow err"),""
 				}
 
 				// 解压文件
@@ -112,13 +124,16 @@ func dow(name, branch string) error {
 				e = tar.UnTar(filepath+"/easydevops.tar.gz", filepath)
 				if e != nil {
 					if k.Email != "" {
-						gemail.SendNifoLog([]string{k.Email},"EasyDevops",k.FullName + "  " + k.Branch + "   更新失败")
+						emlog := k.FullName + "  " + k.Branch + "   更新失败 (下载  解压失败)  filepath: " + filepath + "  exPath: " + filepath +"/easydevops.tar.gz" + "  error: " + e.Error()
+						gemail.SendNifoLog([]string{k.Email},"EasyDevops",emlog)
 					}
+					return errors.New("dow err"),""
 				}
+				return nil,k.Email
 			}
 		}
 	}
-	return errors.New("not dev")
+	return errors.New("not dev"),""
 }
 
 // 查询是否存在这个  如果找到 返回对应的脚本地址
