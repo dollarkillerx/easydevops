@@ -1,7 +1,10 @@
 # easydevops
 easydevops 最小化的自动构建部署
 
-
+### 分支
+- gowith  尽量的去github分支 (掌握在自己手里)
+- native  依赖github分支 和jenkins走的一样的流派
+- master  gowith分支稳定版本
 ### 如何使用
 运行 .api 文件 
 
