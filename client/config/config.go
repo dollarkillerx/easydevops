@@ -7,9 +7,12 @@
 package config
 
 import (
+	"easydevops/utils"
 	"github.com/dollarkillerx/easyutils"
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
+	"log"
+	"time"
 )
 
 type Node struct {
@@ -39,14 +42,34 @@ var (
 )
 
 func init() {
-
-	// 判断配置文件是否存在 如果不存在 则创建
-	b, e := easyutils.PathExists("./config.yml")
-	if e != nil || b == false {
-		createConfig()
-		panic("请填写配置文件")
+	hasCode := ""
+	// 写入热加载
+	for {
+		select {
+		case <-time.After(time.Millisecond * 200):
+			md5, e := utils.Util().Md5File("./config.yml")
+			if e != nil {
+				// 判断配置文件是否存在 如果不存在 则创建
+				b, e := easyutils.PathExists("./config.yml")
+				if e != nil || b == false {
+					createConfig()
+					log.Fatalln("请填写配置文件")
+				}
+			} else {
+				if md5 != hasCode {
+					hasCode = md5
+					// 重载配置文件
+					log.Println("重载配置文件")
+					initConf()
+				}
+			}
+		}
 	}
 
+}
+
+// 载入conf
+func initConf() {
 	Basis = &base{}
 
 	bytes, e := ioutil.ReadFile("./config.yml")
@@ -58,7 +81,6 @@ func init() {
 	if e != nil {
 		panic(e.Error())
 	}
-
 }
 
 func createConfig() {

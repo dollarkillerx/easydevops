@@ -35,6 +35,9 @@ devops:
       secondarydirectory: "/asdsaadsad"  
 ```
 
+### 更新日志
+- 2019-11-11 新增配置文件热加载
+
 ### 基础 教程
 - 程序默认webhook地址: http://0.0.0.0:8083/update
 - 先去github 添加钩子

@@ -7,6 +7,8 @@
 package test
 
 import (
+	"easydevops/utils"
+	"github.com/dollarkillerx/easyutils/clog"
 	"log"
 	"testing"
 )
@@ -20,4 +22,15 @@ func a(arg ...string) {
 	for _, k := range arg {
 		log.Println(k)
 	}
+}
+
+
+func TestRun(t *testing.T) {
+	//lsof -i :8081 | awk '{print $2}'> tmp | pid=$(awk 'NR==2{print}' tmp) | echo $pid;
+	i := utils.Utils{}
+
+	e, s, i2 := i.Exec( "sh","lsof", "-i", ":8081", "| awk '{print $2}'> tmp | pid=$(awk 'NR==2{print}' tmp) | echo $pid;")
+	clog.PrintWa(e)
+	clog.Println(s)
+	clog.Println(i2)
 }
