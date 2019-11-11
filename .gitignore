@@ -14,4 +14,4 @@
 client/api/api
 client/api/tmp
 cmd/cmd
-web/web
+server/web/web
